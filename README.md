@@ -1,1 +1,2 @@
-# Vue JS hello world app
+# Vue JS 
+## Hello world app
