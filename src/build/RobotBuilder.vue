@@ -92,7 +92,7 @@ export default {
   mixins: [createdHookMixin],
   computed: {
     availableParts() {
-      return this.$store.state.parts;
+      return this.$store.state.robots.parts;
     },
     saleBorderClass() {
       return this.selectedRobot.head.onSale ? 'sale-border' : '';
@@ -114,7 +114,9 @@ export default {
         robot.leftArm.cost +
         robot.torso.cost +
         robot.base.cost;
-      this.$store.commit('addRobotTocart', Object.assign({}, robot, { cost }));
+      this.$store.dispatch('addRobotToCart', Object.assign({}, robot, { cost })).then(() => {
+        this.$router.push('/cart');
+      });
       // this.cart.push(Object.assign({}, robot, { cost }));
       this.addedToCart = true;
     },
